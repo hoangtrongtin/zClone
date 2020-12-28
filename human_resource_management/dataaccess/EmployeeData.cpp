@@ -5,10 +5,7 @@
 
 using json = nlohmann::json;
 
-EmployeeData::EmployeeData(){
-    _maxId = 0;
-    _data.resize(0);
-}
+EmployeeData::EmployeeData() : TableData(){}
 EmployeeData::EmployeeData(string filename){
     _maxId = 0;
     _data.resize(0);
@@ -19,7 +16,7 @@ EmployeeData::EmployeeData(string filename){
     {
         json j = json::parse(buff);
         //cout << typeid(j["Sex"]).name() <<endl;
-        Employee e(
+        Employee* e = new Employee(
             j["Id"],
             j["FName"],
             j["MInit"],
@@ -36,33 +33,33 @@ EmployeeData::EmployeeData(string filename){
     }
     inFile.close();
 }
-int EmployeeData::GetMaxID(){
-    return _maxId;
-}
-int EmployeeData::PushBack(Employee e){
-    if(_maxId<e.GetID()){
-        _maxId = e.GetID();
-    }
-    _data.push_back(e);
-    return _maxId;
-}
+// int EmployeeData::GetMaxID(){
+//     return _maxId;
+// }
+// int EmployeeData::PushBack(Employee e){
+//     if(_maxId<e.GetID()){
+//         _maxId = e.GetID();
+//     }
+//     _data.push_back(e);
+//     return _maxId;
+// }
 //int EmployeeData::Get(int i){}
-Employee* EmployeeData::GetPointer(int i){
-    Employee *e = nullptr;
-    if(i >=0 && i<_data.size())
-    e = &_data[i];
-    return e;
-}
-string EmployeeData::ToString()
-{
-    string s("");
-    for(auto e:_data)
-    {
-        s += e.ToString();
-        s += "\n";
-    }
-    return s;
-}
+// Employee* EmployeeData::GetPointer(int i){
+//     Employee *e = nullptr;
+//     if(i >=0 && i<_data.size())
+//     e = &_data[i];
+//     return e;
+// }
+// string EmployeeData::ToString()
+// {
+//     string s("");
+//     for(auto e:_data)
+//     {
+//         s += e.ToString();
+//         s += "\n";
+//     }
+//     return s;
+// }
 /*EmployeeData EmployeeData::GenerateEmployeeData()
 {
     //Employee e(1, "Chau", "Bao", "Ngo", 111222333, "1975-04-30", "Chicago", 'M', 10000, -1, 5);
@@ -85,13 +82,13 @@ string EmployeeData::ToString()
     employeedata.PushBack(e8);
     return employeedata;
     
-}*/
-int EmployeeData::ExportToFile(string filename){
-    ofstream outFile(filename, ios::out);
-    if (!outFile) return 0;
-    for (Employee e:_data){
-        outFile << e.ToJson() << endl;
-    }
-    outFile.close();
-    return 1;
-}
+}*////
+// int EmployeeData::ExportToFile(string filename){
+//     ofstream outFile(filename, ios::out);
+//     if (!outFile) return 0;
+//     for (Employee e:_data){
+//         outFile << e.ToJson() << endl;
+//     }
+//     outFile.close();
+//     return 1;
+// }

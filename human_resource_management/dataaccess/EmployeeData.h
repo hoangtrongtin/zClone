@@ -3,21 +3,22 @@
 #include <vector>
 #include <string>
 #include "../businessobject/Employee.h"
+#include "TableData.h"
 
-class EmployeeData{
+class EmployeeData: public TableData{
 private:
-    vector<Employee> _data;
-    int _maxId;
+    // vector<Employee> _data;
+    // int _maxId;
 public:
     EmployeeData();
     EmployeeData(string);
-    int GetMaxID();
-    int PushBack(Employee);
-    //int Get(int i);
-    Employee* GetPointer(int i);
-    string ToString();
+    // int GetMaxID();
+    //int PushBack(Employee);
+    //int Get(int i);///
+    //Employee* GetPointer(int i);
+    //string ToString();
     //EmployeeData GenerateData();//
-    int ExportToFile(string);
+    //int ExportToFile(string);
 
 };
 #endif

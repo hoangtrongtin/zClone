@@ -1,5 +1,6 @@
 #include "Employee.h"
 #include <string>
+#include <iostream>
 
 Employee::Employee(){};
 Employee::Employee(int id, string fName, string mInit, string lName, long ssn, string bDate, string address, char sex, int salary, long superSSN, int dno)
@@ -16,9 +17,22 @@ Employee::Employee(int id, string fName, string mInit, string lName, long ssn, s
     this->SuperSSN = superSSN;
     this->DNO = dno;
 }
-int Employee::GetID(){
-    return Id;
+Employee::Employee(json j): TableUnit (j){
+    this->Id = j["Id"];
+    this->FName = j["FName"];
+    this->MInit = j["MInit"];
+    this->LName = j["LName"];
+    this->SSN = j["SSN"];
+    this->BDate = j["BDate"];
+    this->Address = j["Address"];
+    this->Sex = (char) ((int) j["Sex"]);
+    this->Salary = j["Salary"];
+    this->SuperSSN = j["SuperSSN"];
+    this->DNO = j["DNO"];
 }
+// int Employee::GetID(){
+//     return Id;
+// }
 string Employee::ToString(){
     string s;
     s += "{";
@@ -48,4 +62,33 @@ json Employee::ToJson(){
     j["SuperSSN"] = SuperSSN;
     j["DNO"] = DNO;
     return j;
+}
+void Employee::FromJson(json j){
+    //TableUnit* tU = new Employee(
+    // tU = new Employee(
+    //     j["Id"],
+    //     j["FName"],
+    //     j["MInit"],
+    //     j["LName"],
+    //     j["SSN"],
+    //     j["BDate"],
+    //     j["Address"],
+    //     (char) ((int) j["Sex"]),
+    //     j["Salary"],
+    //     j["SuperSSN"],
+    //     j["DNO"]
+    // );
+    this->Id = j["Id"];
+    this->FName = j["FName"];
+    this->MInit = j["MInit"];
+    this->LName = j["LName"];
+    this->SSN = j["SSN"];
+    this->BDate = j["BDate"];
+    this->Address = j["Address"];
+    this->Sex = (char) ((int) j["Sex"]);
+    this->Salary = j["Salary"];
+    this->SuperSSN = j["SuperSSN"];
+    this->DNO = j["DNO"];
+    cout<<DNO<<endl;
+    //return tU;
 }
